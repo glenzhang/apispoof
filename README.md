@@ -11,7 +11,7 @@
 let's suppose there is a stroy #9085 need to implement.
 
 - CREATE http://localhost:3000/add/9085
-- LIST http://www.fehelper.com/story/9085
-- UPDATE http://www.fehelper.com/story/9085/01
-- JSON http://www.fehelper.com/story/9085/01/api
-- JSONP http://www.fehelper.com/story/9085/01/api?jsoncallback=functionname
+- LIST http://localhost:3000/story/9085
+- UPDATE http://localhost:3000/story/9085/01
+- JSON http://localhost:3000/story/9085/01/api
+- JSONP http://localhost:3000/story/9085/01/api?jsoncallback=functionname
