@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>ACE in Action IE10+, FF, Chrome</title>
+<style type="text/css" media="screen">
+    #editor { 
+        position: absolute;
+        width: 1000px;
+        height: 80%;
+        margin: 0 auto;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+</style>
+</head>
+<body>
+
+<div id="editor">
+
+</div>
+
+<div>
+    
+    <button id="J_v">validate</button>
+</div>
+    
+<script src="/ace/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    var currentSession = editor.getSession();
+    editor.setTheme("ace/theme/monokai");
+    currentSession.setMode("ace/mode/json");
+    //超出横向折行
+    currentSession.setUseWrapMode(true);
+    //垂直滚动条
+    editor.setOption("vScrollBarAlwaysVisible", true);
+    //显示空格
+    editor.setShowInvisibles(true);
+    editor.setFontSize("24px");
+    editor.setValue('{"test": 2222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222}');
+    
+    //editor.getValue();
+
+    document.getElementById('J_v').addEventListener("click", function() {
+        try {
+            JSON.parse(editor.getValue());
+            //save
+        } catch(ex) {
+            console.log(ex.message);
+            //show error
+        }
+
+    }, false);
+
+</script>
+</body>
+</html>

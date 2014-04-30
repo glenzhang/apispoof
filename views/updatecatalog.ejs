@@ -1,0 +1,132 @@
+<% include public/header.ejs %>
+<style type="text/css" media="screen">
+    .fe_ace_editor_box{ position: relative; height: 600px;}
+    .fe_ace_editor { position: absolute; top:0; bottom: 0; left: 0; right: 0;}
+    .exit-fullscreen{display:none; position:fixed; right: 20px; top: 20px; z-index:99; color: #fff;}
+    .exit-fullscreen:hover{color:#fff;}
+    .btn-create-content{position: fixed; left:20px; bottom: 30px; z-index: 99;}
+</style>
+
+<div class="container">
+    <div class="alert alert-block alert-error fade in" id="J_alert" style="display:none;">
+        <button type="button" class="close" id="J_alert_close">&times;</button>
+        <strong>Oh snap! You got an error!</strong> 
+        <p id="J_alert_message"></p>
+    </div>
+
+    <h1>Story<%= storyid %>/<%= catalog %></h1>
+
+    <%- message %>
+
+    <form class="form-horizontal" method="post">
+      <div class="control-group">
+        <label class="control-label">content</label>
+        <div class="controls">
+          <div class="fe_ace_editor_box" id="J_fe_ace_editor_box">
+            <div id="editor" class="fe_ace_editor"></div>
+            <a href="javascript:void(0);" class="exit-fullscreen" id="J_exit_fullscreen">退出全屏</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <div class="controls">
+          <button type="submit" id="J_btn_create" class="btn">修改</button>
+          <button type="button" id="J_btn_fullscreen_editor" class="btn">全屏</button>
+        </div>
+      </div>
+      
+      <div class="hide">
+        <input type="hidden" value="<%= catalog %>" name="catalog" />
+        <input type="hidden" value="<%= content %>" name="content" id="J_json_content" />
+      </div>
+    </form>
+</div>
+
+<% include public/footerbegin.ejs %>
+<script src="/ace/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="/jsbeautify/js/lib/beautify.js"></script>
+<script>
+(function($){
+    var editor = ace.edit("editor");
+    var currentSession = editor.getSession();
+    var $alert = $("#J_alert");
+    var $content = $("#J_json_content");
+    var $alertMessage = $("#J_alert_message");
+    var $content = $("#J_json_content");
+    var $editorBox = $("#J_fe_ace_editor_box");
+    var $exitFullScreen = $("#J_exit_fullscreen");
+    var $btnCreate = $("#J_btn_create");
+    var btnCreateFullScreenClass = "btn-create-content";
+    var isFullScreenModel = false;
+
+    editor.setTheme("ace/theme/monokai");
+    currentSession.setMode("ace/mode/json");
+    //超出横向折行
+    currentSession.setUseWrapMode(true);
+    //垂直滚动条
+    editor.setOption("vScrollBarAlwaysVisible", true);
+    //显示空格
+    editor.setShowInvisibles(true);
+    editor.setOption("scrollPastEnd", true)
+    editor.setFontSize("24px");
+
+    editor.setValue(js_beautify($content.val()));
+
+    $("#J_alert_close").on("click", function(){
+        $alert.hide();
+    });
+
+    $btnCreate.on("click", function(ev){
+        var editorValue = editor.getValue();
+
+        try {
+            JSON.parse(editorValue);
+        } catch(ex) {
+            ev.preventDefault();
+            $alertMessage.html(ex.message);
+            $alert.show();
+        }
+        $content.val(editorValue);        
+    });
+
+    $("#J_btn_fullscreen_editor").on("click", function(){
+        isFullScreenModel = true;
+        fullScreenHandler();
+    });
+
+    $exitFullScreen.on("click", function(ev){
+        isFullScreenModel = false;
+        ev.preventDefault();
+        $editorBox.css({
+            position: "relative", 
+            left: 0,
+            top: 0,
+            width: "100%",
+            height:  "600px"
+        });
+        $btnCreate.removeClass(btnCreateFullScreenClass);
+        $exitFullScreen.hide();
+    });
+
+    $(window).on("resize.FS", function(){
+        if(isFullScreenModel){
+           $exitFullScreen.show();
+        }          
+    });
+
+    function fullScreenHandler() {
+        $editorBox.css({
+            position: "absolute", 
+            left: 0,
+            top: 0,
+            width: $(window).width() + "px", 
+            height: $(window).height() + "px"
+        });
+        $btnCreate.addClass(btnCreateFullScreenClass);
+        $exitFullScreen.show();
+    }
+    
+}(jQuery));
+</script>
+<% include public/footerend.ejs %>

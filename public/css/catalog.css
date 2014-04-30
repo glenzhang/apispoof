@@ -1,0 +1,3 @@
+.fe_ace_editor_box{ position: relative; height: 600px;}
+.fe_ace_editor { position: absolute; top:0; bottom: 0; left: 0; right: 0;}
+.exit-fullscreen{display:none; position:fixed; right: 20px; top: 20px; z-index:99; color: #fff;}

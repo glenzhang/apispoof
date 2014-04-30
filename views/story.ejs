@@ -1,0 +1,74 @@
+<% include public/header.ejs %>
+
+<div class="container">
+
+  <%- message %>
+
+  <h1>Story#<%= storyid %></h1>
+  
+  <% if(catalogs.length > 0) { %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>story</th>
+        <th>catalog</th>
+        <th>content</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% catalogs.forEach(function(catalog, index){ %>
+        <tr>
+          <td><%= index %></td>
+          <td><%= catalog.story %></td>
+          <td><a href='/story/<%= storyid %>/<%= catalog.catalog %>'><%= catalog.catalog %></a></td>
+          <td><%= catalog.content %></td>
+        </tr>
+      <% }) %>
+
+    </tbody>
+  </table>
+  <% } else { %>
+
+  <div class="alert">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    还没有呢，创建个吧
+  </div>
+
+  <form class="form-horizontal" method="post">
+    <div class="control-group">
+      <label class="control-label">catalog</label>
+      <div class="controls">
+        <select name="catalog">
+          <option value="01">01</option>
+          <option value="02">02</option>
+          <option value="03">03</option>
+          <option value="04">04</option>
+          <option value="05">05</option>
+          <option value="06">06</option>
+          <option value="07">07</option>
+          <option value="08">08</option>
+          <option value="09">09</option>
+          <option value="10">10</option>
+        </select>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label">content</label>
+      <div class="controls">
+        <textarea rows="3" cols="60" name="content" style="width:390px;height:160px;resize:none;"></textarea>
+      </div>
+    </div>
+    <div class="control-group">
+      <div class="controls">
+        <button type="submit" class="btn">创建</button>
+      </div>
+    </div>
+  </form>
+
+  <% } %>
+
+</div>
+
+<% include public/footerbegin.ejs %>
+<% include public/footerend.ejs %>
