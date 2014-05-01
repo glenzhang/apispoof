@@ -3,7 +3,7 @@
 ## Setup ##
 1. install node on [http://nodejs.org/](http://nodejs.org/ "http://nodejs.org/")
 2. install mongodb on [https://www.mongodb.org/](https://www.mongodb.org/ "https://www.mongodb.org/")
-3. clonse code, run npm install & node app
+3. clone code, run npm install & node app
 4. cool http://localhost:3000
 
 ## How to use ##
