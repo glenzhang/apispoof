@@ -8,7 +8,7 @@
 
 ## How to use ##
 
-let's suppose there is a stroy #9085 need to implement.
+Let's suppose there is a stroy #9085 need to implement.
 
 - CREATE http://localhost:3000/add/9085
 - LIST http://localhost:3000/story/9085
