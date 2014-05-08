@@ -2,7 +2,9 @@
 /**
  * Module dependencies.
  */
-
+var fs = require('fs');
+var accessLogfile = fs.createWriteStream('./logs/access.log', {flags: 'a'});
+var errLogfile = fs.createWriteStream('./logs/error.log', {flags:'a'});
 var express = require('express');
 var routes = require('./routes');
 var user = require('./routes/user');
@@ -17,13 +19,15 @@ var store = new SessionStore({
     interval: 120*1000
 });
 var app = express();
+// express access log
+app.use(express.logger({stream: accessLogfile}));
 
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(express.favicon());
-app.use(express.logger('dev'));
+app.use(express.logger('production'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
