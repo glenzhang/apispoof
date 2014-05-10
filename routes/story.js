@@ -1,6 +1,7 @@
 var SpoofApi = require('../models/spoofapi');
 var qs = require('querystring');
 var url = require('url');
+var beautify = require("js-beautify").js_beautify;
 
 module.exports = {
     find: function(req, res) {
@@ -72,7 +73,7 @@ module.exports = {
             res.render('updatecatalog', {
                 storyid: req.params.storyid,
                 catalog: req.params.catalog,
-                content: content ? JSON.stringify(content) : ''
+                content: content ? beautify(JSON.stringify(content), { indent_size: 2 })  : ''
             });
         });
     },
