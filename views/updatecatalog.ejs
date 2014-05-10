@@ -23,7 +23,7 @@
         <label class="control-label">content</label>
         <div class="controls">
           <div class="fe_ace_editor_box" id="J_fe_ace_editor_box">
-            <div id="editor" class="fe_ace_editor"></div>
+            <div id="editor" class="fe_ace_editor"><%= content %></div>
             <a href="javascript:void(0);" class="exit-fullscreen" id="J_exit_fullscreen">退出全屏</a>
           </div>
         </div>
@@ -70,8 +70,6 @@
     editor.setShowInvisibles(true);
     editor.setOption("scrollPastEnd", true)
     editor.setFontSize("24px");
-
-    editor.setValue(js_beautify($content.val()));
 
     $("#J_alert_close").on("click", function(){
         $alert.hide();
