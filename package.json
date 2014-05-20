@@ -11,6 +11,7 @@
     "mongodb": "*",
     "session-mongoose": "*",
     "mongoose": "*",
-    "js-beautify":"*"
+    "js-beautify":"*",
+	"bson": "*"
   }
 }
