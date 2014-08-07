@@ -73,7 +73,9 @@ module.exports = {
             res.render('updatecatalog', {
                 storyid: req.params.storyid,
                 catalog: req.params.catalog,
-                content: content ? beautify(JSON.stringify(content), { indent_size: 2 })  : ''
+                content: content ? beautify(JSON.stringify(content), { indent_size: 2 })  : '',
+                jsonurl: '/story/' + req.params.storyid + "/" + req.params.catalog + "/api",
+                jsonpurl: '/story/' + req.params.storyid + "/" + req.params.catalog + "/api?jsoncallback=fromspoof"
             });
         });
     },
