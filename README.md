@@ -1,17 +1,18 @@
-# A remote JSON/JSONP data spoof tool by NODEJS  #
+#JSON/JSONP data spoof tool
 
-## Setup ##
-1. install node on [http://nodejs.org/](http://nodejs.org/ "http://nodejs.org/")
-2. install mongodb on [https://www.mongodb.org/](https://www.mongodb.org/ "https://www.mongodb.org/")
-3. clone code, run npm install & node app
-4. cool http://localhost:3000
+## Easy to deploy ##
+1. Install [node](http://nodejs.org/ "node")
+2. Install [mongodb](https://www.mongodb.org/ "mongodb")
+3. Get code, `git clone https://github.com/glenzhang/apispoof.git`
+4. Go to apisoof folder, `npm install & node app`
+5. [cool](http://localhost:3000)
 
 ## How to use ##
 
-Let's suppose there is a stroy #9085 need to implement.
+**Suppose there is a stroy#8888 need to implement.** Need an api to output json data. 
 
-- CREATE http://localhost:3000/add/9085
-- LIST http://localhost:3000/story/9085
-- UPDATE http://localhost:3000/story/9085/01
-- JSON http://localhost:3000/story/9085/01/api
-- JSONP http://localhost:3000/story/9085/01/api?jsoncallback=functionname
+1. The story's apis are in the [LIST]("http://localhost:3000/story/8888")
+2. [CREATE]("http://localhost:3000/add/8888")
+3. [UPDATE]("http://localhost:3000/story/8888/01")
+4. [JSON data]("http://localhost:3000/story/8888/01/api")
+5. [JSONP data]("http://localhost:3000/story/8888/01/api?jsoncallback=functionname")
