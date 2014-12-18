@@ -19,15 +19,18 @@ exports.story = function(req, res) {
     }
 
     story.find(req, res);
-
-};
-
-exports.doStory = function(req, res){
-    story.save(req, res);
 };
 
 exports.api = function(req, res){
     story.showApi(req, res);
+};
+
+exports.catalog = function(req, res) {
+    story.addCatalog(req, res);
+};
+
+exports.doStory = function(req, res){
+    story.save(req, res);
 };
 
 exports.doCatalog = function(req, res){

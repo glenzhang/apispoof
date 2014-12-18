@@ -14,40 +14,42 @@
     <p id="J_alert_message"></p>
   </div>
 
-  <h1>Story#<%= storyid %></h1>
-  
-  <%- message %>
+  <% if(catalogs.length > 0) { %>
+      <h1>Story#<%= storyid %></h1>
 
-  <form class="form-horizontal" method="post">
-    <div class="control-group">
-      <label class="control-label">catalog</label>
-      <div class="controls">
-          <select name="catalog">
-            <% ["01", "02", "03", "04", "05", "06", "07", "08", "09","10"].forEach(function(item, idx){ %>
-              <option value="<%= item %>"><%= item %></option>
-            <% }) %>
-        </select>
-      </div>
-    </div>
-    <div class="control-group">
-      <label class="control-label">content</label>
-      <div class="controls">
-        <div class="fe_ace_editor_box" id="J_fe_ace_editor_box">
-          <div id="editor" class="fe_ace_editor"></div>        
-          <a href="javascript:void(0);" class="exit-fullscreen" id="J_exit_fullscreen">退出全屏</a>
+      <form class="form-horizontal" method="post">
+        <div class="control-group">
+          <label class="control-label">catalog</label>
+          <div class="controls">
+              <select name="catalog">
+                <% catalogs.forEach(function(item, idx){ %>
+                  <option value="<%= item %>"><%= item %></option>
+                <% }) %>
+            </select>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="control-group">
-      <div class="controls">
-        <button type="submit" id="J_btn_create" class="btn">创建</button>
-        <button type="button" id="J_btn_fullscreen_editor" class="btn">全屏</button>
-      </div>
-    </div>
-    <div class="hide">
-      <input type="hide" value="" name="content" id="J_json_content" />
-     </div>
-  </form>
+        <div class="control-group">
+          <label class="control-label">content</label>
+          <div class="controls">
+            <div class="fe_ace_editor_box" id="J_fe_ace_editor_box">
+              <div id="editor" class="fe_ace_editor"></div>        
+              <a href="javascript:void(0);" class="exit-fullscreen" id="J_exit_fullscreen">退出全屏</a>
+            </div>
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="controls">
+            <button type="submit" id="J_btn_create" class="btn">创建</button>
+            <button type="button" id="J_btn_fullscreen_editor" class="btn">全屏</button>
+          </div>
+        </div>
+        <div class="hide">
+          <input type="hide" value="" name="content" id="J_json_content" />
+         </div>
+      </form>
+  <% } else { %>
+      <%- message %>
+  <% } %>
 </div>
 
 <% include public/footerbegin.ejs %>

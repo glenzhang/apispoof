@@ -63,11 +63,16 @@ app.get('/story', routes.story);
 app.get('/story/:storyid',routes.story);
 app.get('/story/:storyid/:catalog', routes.story);
 app.get('/story/:storyid/:catalog/:api', routes.api);
-app.post('/add/:storyid', routes.doStory);
-app.post('/story/:storyid/:catalog', routes.doCatalog);
+/*
 app.get('/add/:storyid', function(req, res){
     res.render('addcatalog', {storyid: req.params.storyid});
 });
+*/
+app.get('/add/:storyid', routes.catalog);
+//app.post('/add/:storyid', routes.doStory);
+app.post('/add/:storyid', routes.doCatalog);
+app.post('/story/:storyid/:catalog', routes.doCatalog);
+
 
 mongoose.connect('mongodb://localhost/apibuilder');
 
