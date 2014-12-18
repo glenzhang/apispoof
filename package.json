@@ -10,8 +10,7 @@
     "ejs": "*",
     "mongodb": "*",
     "session-mongoose": "*",
-    "mongoose": "*",
-    "js-beautify":"*",
-	"bson": "*"
+    "mongoose": "3.8.7",
+    "js-beautify": "*"
   }
 }

@@ -5,7 +5,7 @@ var story = require('./story');
 
 exports.index = function(req, res) {
     res.render('index', {
-        title: 'FE-Helper'
+        title: 'apispoof'
     });
 };
 
