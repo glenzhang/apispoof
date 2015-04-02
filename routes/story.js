@@ -106,12 +106,12 @@ module.exports = {
 
             if (isJSONP) {
                 res.writeHead(200, {
-                    'Content-Type': 'application/javascript'
+                    'Content-Type': 'application/javascript;charset=utf-8'
                 });
                 res.write(queryData[jsoncallback] + '(' + JSON.stringify(doc.content) + ')');
             } else {
                 res.writeHead(200, {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json;charset=utf-8'
                 });
                 res.write(JSON.stringify(doc.content));
             }
