@@ -106,12 +106,14 @@ module.exports = {
 
             if (isJSONP) {
                 res.writeHead(200, {
-                    'Content-Type': 'application/javascript;charset=utf-8'
+                    'Content-Type': 'application/javascript;charset=utf-8',
+                    'Access-Control-Allow-Origin': '*'
                 });
                 res.write(queryData[jsoncallback] + '(' + JSON.stringify(doc.content) + ')');
             } else {
                 res.writeHead(200, {
-                    'Content-Type': 'application/json;charset=utf-8'
+                    'Content-Type': 'application/json;charset=utf-8',
+                    'Access-Control-Allow-Origin': '*'
                 });
                 res.write(JSON.stringify(doc.content));
             }
